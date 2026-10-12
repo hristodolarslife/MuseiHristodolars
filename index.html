@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музей Христодолларс 🏛️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== ШАПКА ===== */
+        .header {
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 4px solid #f1c40f;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(241, 196, 15, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header-top {
+            font-size: 14px;
+            color: #f1c40f;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-title {
+            font-size: 42px;
+            color: #fff;
+            text-shadow: 4px 4px 0 #000, 0 0 40px #f1c40f;
+            margin-bottom: 15px;
+            letter-spacing: 6px;
+            position: relative;
+            z-index: 2;
+            animation: titleGlow 3s infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { text-shadow: 4px 4px 0 #000, 0 0 25px #f1c40f; }
+            to { text-shadow: 4px 4px 0 #000, 0 0 55px #f1c40f, 0 0 90px #f39c12; }
+        }
+
+        .header-subtitle {
+            display: inline-block;
+            background: #f1c40f;
+            color: #000;
+            padding: 12px 30px;
+            font-size: 22px;
+            letter-spacing: 3px;
+            box-shadow: 0 0 30px rgba(241, 196, 15, 0.7);
+            position: relative;
+            z-index: 2;
+            transform: skewX(-5deg);
+        }
+
+        .header-subtitle span { display: inline-block; transform: skewX(5deg); }
+
+        .address {
+            margin-top: 25px;
+            font-size: 14px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .address-icon {
+            font-size: 22px;
+            filter: drop-shadow(0 0 10px #f1c40f);
+        }
+
+        .hours {
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(241, 196, 15, 0.1);
+            border: 2px solid #f1c40f;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 11px;
+            color: #f1c40f;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== ИИСУС ===== */
+        .jesus-banner {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(180deg, #1a1a1a 0%, #000 100%);
+            overflow: hidden;
+            border-bottom: 4px solid #f1c40f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .jesus-banner::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(241, 196, 15, 0.3) 0%, transparent 70%);
+            animation: haloPulse 4s infinite alternate;
+        }
+
+        @keyframes haloPulse {
+            from { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
+            to { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+        }
+
+        .jesus-figure {
+            position: relative;
+            z-index: 2;
+            font-size: 200px;
+            filter: drop-shadow(0 0 50px #f1c40f);
+            animation: jesusBreathe 5s infinite ease-in-out;
+        }
+
+        @keyframes jesusBreathe {
+            0%, 100% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.03) translateY(-10px); }
+        }
+
+        .xsd-badge {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, #f1c40f, #b8860b);
+            color: #000;
+            border: 6px solid #fff;
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            box-shadow: 0 0 60px #f1c40f, 0 0 120px rgba(241, 196, 15, 0.6);
+            z-index: 3;
+            animation: badgeRotate 8s infinite linear;
+            text-shadow: 2px 2px 0 #fff;
+        }
+
+        @keyframes badgeRotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* ===== СЕКЦИЯ УСЛУГ ===== */
+        .services {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-title {
+            text-align: center;
+            font-size: 20px;
+            color: #f1c40f;
+            text-shadow: 3px 3px 0 #000, 0 0 25px #f1c40f;
+            margin-bottom: 30px;
+            letter-spacing: 4px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .service-card {
+            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+            border: 3px solid #f1c40f;
+            border-radius: 12px;
+            padding: 20px 15px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(241, 196, 15, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .service-card:hover::before { left: 100%; }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(241, 196, 15, 0.5);
+            border-color: #fff;
+        }
+
+        .service-icon {
+            font-size: 52px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 15px #f1c40f);
+        }
+
+        .service-name {
+            font-size: 10px;
+            color: #f1c40f;
+            text-shadow: 0 0 10px #f1c40f;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            min-height: 32px;
+        }
+
+        .service-desc {
+            font-size: 7px;
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            min-height: 40px;
+        }
+
+        .service-price {
+            font-size: 9px;
+            color: #2ecc71;
+            text-shadow: 0 0 10px #2ecc71;
+            padding: 6px 10px;
+            border: 1px solid #2ecc71;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        /* ===== СЛОГАН ===== */
+        .slogan {
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 4px solid #f1c40f;
+            border-bottom: 4px solid #f1c40f;
+        }
+
+        .slogan-text {
+            font-size: 18px;
+            color: #fff;
+            letter-spacing: 3px;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        .slogan-text .gold {
+            color: #f1c40f;
+            text-shadow: 0 0 20px #f1c40f;
+        }
+
+        .xsd-logo {
+            font-size: 60px;
+            color: #f1c40f;
+            text-shadow: 5px 5px 0 #000, 0 0 40px #f1c40f;
+            letter-spacing: 10px;
+            animation: logoPulse 2s infinite alternate;
+        }
+
+        @keyframes logoPulse {
+            from { text-shadow: 5px 5px 0 #000, 0 0 25px #f1c40f; }
+            to { text-shadow: 5px 5px 0 #000, 0 0 55px #f1c40f, 0 0 90px #f39c12; }
+        }
+
+        /* ===== КНОПКИ ===== */
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 30px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            background: #f1c40f;
+            color: #000;
+            border: 3px solid #fff;
+            padding: 14px 22px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 9px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+
+        .btn:hover { transform: scale(1.08); background: #fff; border-color: #f1c40f; }
+        .btn:active { transform: scale(0.95); }
+
+        .btn-green { background: #2ecc71; color: #fff; }
+        .btn-green:hover { background: #58d68d; }
+
+        .btn-red { background: #e74c3c; color: #fff; }
+        .btn-red:hover { background: #ec7063; }
+
+        .btn-purple { background: #9b59b6; color: #fff; }
+        .btn-purple:hover { background: #af7ac5; }
+
+        .btn-blue { background: #3498db; color: #fff; }
+        .btn-blue:hover { background: #5dade2; }
+
+        .btn-orange { background: #e67e22; color: #fff; }
+        .btn-orange:hover { background: #f39c12; }
+
+        /* ===== ФУТЕР ===== */
+        .footer {
+            background: #000;
+            padding: 25px 20px;
+            text-align: center;
+            font-size: 7px;
+            color: #666;
+            line-height: 2.2;
+            border-top: 3px solid #f1c40f;
+        }
+
+        .footer a { color: #f1c40f; text-decoration: none; }
+        .footer a:hover { color: #2ecc71; }
+
+        /* ===== МОДАЛЬНОЕ ОКНО ===== */
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #modal.show { display: flex; }
+
+        .modal-content {
+            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+            border: 4px solid #f1c40f;
+            border-radius: 15px;
+            padding: 30px 25px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 60px rgba(241, 196, 15, 0.8);
+            animation: popIn 0.3s;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 20px #f1c40f);
+        }
+
+        .modal-title {
+            font-size: 14px;
+            color: #f1c40f;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            text-shadow: 0 0 15px #f1c40f;
+        }
+
+        .modal-text {
+            font-size: 8px;
+            color: #ddd;
+            line-height: 2.2;
+            margin-bottom: 20px;
+        }
+
+        .modal-text .gold { color: #f1c40f; }
+        .modal-text .green { color: #2ecc71; }
+
+        .modal-close {
+            background: #e74c3c;
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 10px 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 8px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover { background: #ec7063; transform: scale(1.05); }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 768px) {
+            .header-title { font-size: 26px; letter-spacing: 3px; }
+            .header-subtitle { font-size: 14px; padding: 10px 20px; }
+            .header-top { font-size: 10px; }
+            .address { font-size: 10px; }
+            .hours { font-size: 8px; }
+            .jesus-banner { height: 280px; }
+            .jesus-figure { font-size: 140px; }
+            .xsd-badge { width: 130px; height: 130px; font-size: 28px; }
+            .services-title { font-size: 14px; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .service-icon { font-size: 38px; }
+            .service-name { font-size: 8px; }
+            .slogan-text { font-size: 11px; }
+            .xsd-logo { font-size: 38px; letter-spacing: 6px; }
+            .btn { font-size: 7px; padding: 10px 14px; }
+        }
+
+        @media (max-width: 480px) {
+            .header-title { font-size: 20px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .jesus-figure { font-size: 100px; }
+            .xsd-badge { width: 100px; height: 100px; font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== ШАПКА ===== -->
+    <div class="header">
+        <div class="header-top">✦ ОТКРЫЛСЯ ✦</div>
+        <div class="header-title">МУЗЕЙ</div>
+        <div class="header-subtitle"><span>ХРИСТОДОЛЛАРС</span></div>
+
+        <div class="address">
+            <span class="address-icon">📍</span>
+            <span>ВЫСОЦКАЯ 6</span>
+        </div>
+
+        <div class="hours">
+            🕐 ЧАСЫ РАБОТЫ: С 9:00 ДО 20:00
+        </div>
+    </div>
+
+    <!-- ===== ИИСУС ===== -->
+    <div class="jesus-banner">
+        <div class="jesus-figure">✝️</div>
+        <div class="xsd-badge">XSD</div>
+    </div>
+
+    <!-- ===== УСЛУГИ ===== -->
+    <div class="services">
+        <div class="services-title">✦ ЧТО МОЖНО СДЕЛАТЬ ✦</div>
+
+        <div class="services-grid">
+
+            <div class="service-card" onclick="showService('pizza')">
+                <div class="service-icon">🍕</div>
+                <div class="service-name">ПИЦЦА<br>ХРИСТОДОЛЛАРС</div>
+                <div class="service-desc">Вкусная пицца с символикой проекта</div>
+                <div class="service-price">от 500 ₽</div>
+            </div>
+
+            <div class="service-card" onclick="showService('donut')">
+                <div class="service-icon">🍩</div>
+                <div class="service-name">ПОНЧИК<br>XSD</div>
+                <div class="service-desc">Сладкий пончик с глазурью XSD</div>
+                <div class="service-price">от 200 ₽</div>
+            </div>
+
+            <div class="service-card" onclick="showService('book')">
+                <div class="service-icon">📕</div>
+                <div class="service-name">КНИГА<br>«ПУТЬ СВЕТА»</div>
+                <div class="service-desc">Читать книги о супергерое Христодолларсе</div>
+                <div class="service-price">от 300 ₽</div>
+            </div>
+
+            <div class="service-card" onclick="showService('candle')">
+                <div class="service-icon">🕯️</div>
+                <div class="service-name">ПОСТАВИТЬ<br>СВЕЧИ</div>
+                <div class="service-desc">Зажги свечу и получи благословение</div>
+                <div class="service-price">от 100 ₽</div>
+            </div>
+
+            <div class="service-card" onclick="showService('souvenir')">
+                <div class="service-icon">🎁</div>
+                <div class="service-name">СУВЕНИРЫ<br>И МЕРЧ</div>
+                <div class="service-desc">Кружки, постеры, плакаты, сумки</div>
+                <div class="service-price">от 400 ₽</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== СЛОГАН ===== -->
+    <div class="slogan">
+        <div class="slogan-text">
+            МЕСТО, ГДЕ <span class="gold">ВЕРА</span> ВСТРЕЧАЕТ <span class="gold">СУПЕР СИЛУ</span>
+        </div>
+        <div class="xsd-logo">XSD</div>
+    </div>
+
+    <!-- ===== КНОПКИ ===== -->
+    <div class="actions">
+        <a class="btn btn-green" href="https://hristodolarslife.github.io/IzVodibenzin/" target="_blank">🎮 ИГРА</a>
+        <a class="btn btn-purple" href="https://hristodolarslife.github.io/Casino-hristodolars-/" target="_blank">🎁 БОНУС</a>
+        <a class="btn btn-blue" href="https://iisus834-jpg.github.io/-/" target="_blank">💳 СВЕЧА</a>
+        <a class="btn btn-orange" href="https://vk.ru/id1129303474" target="_blank">🔵 ВК</a>
+        <a class="btn btn-red" href="https://max.ru/join/7L4pJP-zPWQPx5KhVoBB8vN34m2RsOwICIHoQizD7CU" target="_blank">💬 МАКС</a>
+    </div>
+
+    <!-- ===== ФУТЕР ===== -->
+    <div class="footer">
+        🏛️ Музей «Христодолларс» · Высоцкая 6<br>
+        🕐 Часы работы: с 9:00 до 20:00<br>
+        💳 Сбер: <strong style="color:#f1c40f;">8 902 143 35 15</strong> (Александр)<br>
+        Связь: <a href="https://max.ru/join/7L4pJP-zPWQPx5KhVoBB8vN34m2RsOwICIHoQizD7CU" target="_blank">💬 Группа Макс</a><br>
+        © 2026 Христодолларс · XSD
+    </div>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО ===== -->
+    <div id="modal" onclick="if(event.target===this) closeModal()">
+        <div class="modal-content">
+            <div class="modal-icon" id="modal-icon">🍕</div>
+            <div class="modal-title" id="modal-title">ПИЦЦА ХРИСТОДОЛЛАРС</div>
+            <div class="modal-text" id="modal-text"></div>
+            <button class="modal-close" onclick="closeModal()">✖ ЗАКРЫТЬ</button>
+        </div>
+    </div>
+
+<script>
+    const services = {
+        pizza: {
+            icon: '🍕',
+            title: 'ПИЦЦА ХРИСТОДОЛЛАРС',
+            text: 'Вкусная пицца с символикой проекта!<br><br>'
+                + '🍕 Классическая — <span class="green">500 ₽</span><br>'
+                + '🍕 Пепперони XSD — <span class="green">700 ₽</span><br>'
+                + '🍕 Супер-сила — <span class="green">900 ₽</span><br><br>'
+                + '<span class="gold">📍 Заказать: Высоцкая 6</span>'
+        },
+        donut: {
+            icon: '🍩',
+            title: 'ПОНЧИК XSD',
+            text: 'Сладкий пончик с глазурью XSD!<br><br>'
+                + '🍩 Классический — <span class="green">200 ₽</span><br>'
+                + '🍩 С шоколадом — <span class="green">300 ₽</span><br>'
+                + '🍩 С глазурью XSD — <span class="green">400 ₽</span><br><br>'
+                + '<span class="gold">📍 Заказать: Высоцкая 6</span>'
+        },
+        book: {
+            icon: '📕',
+            title: 'КНИГА «ПУТЬ СВЕТА»',
+            text: 'Читать книги о супергерое Христодолларсе!<br><br>'
+                + '📕 «Восхождение на вершину мира» — <span class="green">200 ₽</span><br>'
+                + '📕 2 часть — <span class="green">500 ₽</span><br>'
+                + '📕 Полное прохождение (1737 стр.) — <span class="green">3000 ₽</span><br>'
+                + '📕 Книга ЧИТЫ к игре — <span class="green">777 ₽</span><br><br>'
+                + '<span class="gold">📍 Купить: Высоцкая 6</span>'
+        },
+        candle: {
+            icon: '🕯️',
+            title: 'ПОСТАВИТЬ СВЕЧИ',
+            text: 'Зажги свечу и получи благословение!<br><br>'
+                + '🕯️ Малая свеча — <span class="green">100 ₽</span><br>'
+                + '🕯️ Золотая свеча — <span class="green">500 ₽</span><br>'
+                + '🕯️ Свеча ангела — <span class="green">1000 ₽</span><br>'
+                + '🕯️ Свеча Христа — <span class="green">10000 ₽</span><br><br>'
+                + '<span class="gold">📍 Поставить: Высоцкая 6</span>'
+        },
+        souvenir: {
+            icon: '🎁',
+            title: 'СУВЕНИРЫ И МЕРЧ',
+            text: 'Кружки, постеры, плакаты, сумки!<br><br>'
+                + '☕ Кружка XSD — <span class="green">400 ₽</span><br>'
+                + '🖼️ Постер — <span class="green">500 ₽</span><br>'
+                + '📰 Плакат — <span class="green">300 ₽</span><br>'
+                + '🛍️ Сумка XSD — <span class="green">600 ₽</span><br>'
+                + '👕 Футболка — <span class="green">1000 ₽</span><br><br>'
+                + '<span class="gold">📍 Купить: Высоцкая 6</span>'
+        }
+    };
+
+    function showService(id) {
+        const s = services[id];
+        if (!s) return;
+
+        document.getElementById('modal-icon').textContent = s.icon;
+        document.getElementById('modal-title').textContent = s.title;
+        document.getElementById('modal-text').innerHTML = s.text;
+        document.getElementById('modal').classList.add('show');
+    }
+
+    function closeModal() {
+        document.getElementById('modal').classList.remove('show');
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+    });
+</script>
+
+</body>
+</html>
